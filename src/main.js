@@ -36,7 +36,7 @@ app.on('ready', () => {
       preload: path.join(__dirname, 'inject/preload.js'),
     }
   });
-  mainWindow.loadURL("https://togic.feishu.cn/messenger");
+  mainWindow.loadURL("https://www.feishu.cn/messenger");
   //mainWindow.webContents.openDevTools();
 
   mainWindow.on('close', (event) => { 
@@ -66,7 +66,6 @@ app.on('ready', () => {
   })
 
   ipcMain.on('badge-changed', (event, num) => {
-    console.log('badge-changed');
     if (process.platform == "darwin") {
       app.dock.setBadge(num);
       if (num) {
