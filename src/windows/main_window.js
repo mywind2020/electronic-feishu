@@ -7,17 +7,17 @@ const path = require('path');
 class MainWindow {
 
   constructor() {
-    console.log("assert:" + asserts);
+    console.log("assert:" + assets);
     this.isShown = false;
     this.createWindow();
   }
 
   createWindow() {
-    this.mainWindow = new BrowserWindow({
+    this.browserWindow = new BrowserWindow({
       width: 1024,
       height: 768,
       autoHideMenuBar: true,
-      icon: path.join(asserts, 'app_launcher_foreground.png'),
+      icon: path.join(assets, 'app_launcher_foreground.png'),
       titleBarStyle: 'hidden-inset',
       webPreferences: {
         javascript: true,
@@ -27,34 +27,39 @@ class MainWindow {
         preload: path.join(__dirname, '../inject/preload.js'),
       }
     });
-    this.mainWindow.loadURL("https://www.feishu.cn/messenger");
-    this.mainWindow.on('close', (event) => {
-      if (this.mainWindow.isVisible()) {
-        this.mainWindow.minimize()
+    this.browserWindow.loadURL("https://www.feishu.cn/messenger");
+    this.browserWindow.on('close', (event) => {
+      if (this.browserWindow.isVisible()) {
+        this.browserWindow.minimize()
         event.preventDefault();
       }
     });
 
-    this.mainWindow.on('restore', () => {
+    this.browserWindow.on('restore', () => {
       console.log("restore");
     })
-    this.mainWindow.on('ready-to-show', () => {
+    this.browserWindow.on('ready-to-show', () => {
       console.log("restore");
     })
 
-    this.mainWindow.on('show', () => {
+    this.browserWindow.on('show', () => {
       //tray.setHighlightMode('always')
       console.log("show");
     })
 
-    this.mainWindow.on('hide', () => {
+    this.browserWindow.on('hide', () => {
       //tray.setHighlightMode('never')
       console.log("hide");
     })
+
+    //页面准备好,隐藏加载界面,显示主界面
+    this.browserWindow.on('ready-to-show',() => {
+      this.show();
+    });
   }
 
   show() {
-    this.mainWindow.show();
+    this.browserWindow.show();
   }
 }
 module.exports = MainWindow;

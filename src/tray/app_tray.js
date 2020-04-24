@@ -6,8 +6,8 @@ const path = require('path');
 class AppTray {
 
   constructor(mainWindow) {
-      this.trayIconUnread = nativeImage.createFromPath(path.join(asserts,'app_launcher_foreground_unread.png'));
-      this.trayIcon = nativeImage.createFromPath(path.join(asserts,'app_launcher_foreground.png'));
+      this.trayIconUnread = nativeImage.createFromPath(path.join(assets,'app_launcher_foreground_unread.png'));
+      this.trayIcon = nativeImage.createFromPath(path.join(assets,'app_launcher_foreground.png'));
       this.mainWindow = mainWindow;
       this.initTray();
       this.initIpc();
