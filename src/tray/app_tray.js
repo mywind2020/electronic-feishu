@@ -30,6 +30,7 @@ class AppTray {
           }
         } else if (process.platform === "linux" || process.platform === "win32") {
     //        app.setBadgeCount(num * 1);
+            console.log("num=" + num);
             if (num*1>0) {
               this.setUnreadStat(1);
             } else {
@@ -70,15 +71,16 @@ class AppTray {
     }
 
     setUnreadStat(stat) {
-        if (stat === this.lastUnreadStat) {
-          return;
-        }
-        this.lastUnreadStat = stat;
-        if (stat === 0) {
-          this.tray.setImage(this.trayIcon);
-        } else {
-          this.tray.setImage(this.trayIconUnread);
-        }
+      console.log("stat:" + stat + " lastUnread:" + this.lastUnreadStat);
+      if (stat === this.lastUnreadStat) {
+        return;
+      }
+      if (stat === 0) {
+        this.tray.setImage(this.trayIcon);
+      } else {
+        this.tray.setImage(this.trayIconUnread);
+      }
+      this.lastUnreadStat = stat;
     }
 }
 module.exports = AppTray;
