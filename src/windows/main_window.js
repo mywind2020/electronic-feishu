@@ -1,4 +1,4 @@
-const { app, Menu, BrowserWindow, Tray } = require('electron');
+const { app, Menu, BrowserWindow, Tray,ipcMain } = require('electron');
 const path = require('path');
 
 /**
@@ -17,6 +17,7 @@ class MainWindow {
       width: 1024,
       height: 768,
       autoHideMenuBar: true,
+      show: false,
       icon: path.join(assets, 'app_launcher_foreground.png'),
       titleBarStyle: 'hidden-inset',
       webPreferences: {
@@ -28,6 +29,7 @@ class MainWindow {
       }
     });
     this.browserWindow.loadURL("https://www.feishu.cn/messenger");
+    // this.browserWindow.loadURL("https://www.baidu.com");
     this.browserWindow.on('close', (event) => {
       if (this.browserWindow.isVisible()) {
         this.browserWindow.minimize()
@@ -55,6 +57,8 @@ class MainWindow {
     //页面准备好,隐藏加载界面,显示主界面
     this.browserWindow.on('ready-to-show',() => {
       this.show();
+      //发送主窗口准备显示事件,splash页接收到该事件后,自动关闭.
+      ipcMain.emit("main-window-ready-to-show");
     });
   }
 

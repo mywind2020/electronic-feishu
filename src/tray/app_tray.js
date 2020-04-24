@@ -29,7 +29,7 @@ class AppTray {
             this.tray.setTitle('');
           }
         } else if (process.platform === "linux" || process.platform === "win32") {
-    //        app.setBadgeCount(num * 1);
+            app.setBadgeCount(num * 1);
             console.log("num=" + num);
             if (num*1>0) {
               this.setUnreadStat(1);
