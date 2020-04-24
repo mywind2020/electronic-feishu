@@ -28,7 +28,7 @@ npm install && npm start
 打包应用:
 
 ```bash
-$./script/build.sh linux x64
+$./build.sh linux x64
 可选参数:platform:	darwin, linux, win32
 	    arch:		ia32, x64
 
