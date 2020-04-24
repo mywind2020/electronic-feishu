@@ -30,12 +30,17 @@ class AppTray {
           }
         } else if (process.platform === "linux" || process.platform === "win32") {
     //        app.setBadgeCount(num * 1);
-            if(num * 1 > 0 && !this.mainWindow.isFocused) {
+            if (num*1>0) {
               this.setUnreadStat(1);
-            }
-            if(this.mainWindow.isFocused && num * 1==0) {
+            } else {
               this.setUnreadStat(0);
             }
+            // if(num * 1 > 0 && !this.mainWindow.isFocused) {
+            //   this.setUnreadStat(1);
+            // }
+            // if(this.mainWindow.isFocused && num * 1==0) {
+            //   this.setUnreadStat(0);
+            // }
         }
       });
     }

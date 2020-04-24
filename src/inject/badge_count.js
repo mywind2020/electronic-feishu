@@ -15,7 +15,7 @@ class BadgeCount {
       if (count > 0) {
         ipcRenderer.send('badge-changed', count.toString());
       } else {
-        ipcRenderer.send('badge-changed', '');
+        ipcRenderer.send('badge-changed', '0');
       }
     }, 1500);
   }
