@@ -1,4 +1,4 @@
-const { app, Menu, BrowserWindow,nativeImage,Tray,ipcMain } = require('electron');
+const { app, Menu, BrowserWindow,nativeImage,Tray,ipcMain,shell } = require('electron');
 const path = require('path');
 /**
  * 系统托盘图标
@@ -52,19 +52,37 @@ class AppTray {
     initTray() {
         this.tray = new Tray(this.trayIcon);
         const contextMenu = Menu.buildFromTemplate([
-            {
-                label: '显示',
-                click: () => {
-                  this.mainWindow.show();
-                }
-            },
-            {
-                label: '退出',
+          {
+            label: '系统',
+            submenu:[
+              {
+                label:"github主页",
                 click: ()=> {
-                    console.log("退出!");
-                    app.exit(0);
+                  shell.openExternal("https://github.com/mywind2020/electronic-feishu");
                 }
+              },
+
+              {
+                label:"检查更新",
+                click: ()=> {
+                  shell.openExternal("https://github.com/mywind2020/electronic-feishu/releases");
+                }
+              },
+              {
+                label:"退出",
+                click: ()=> {
+                  console.log("退出!");
+                  app.exit(0);
+                }
+              }
+            ]
+          },  
+          {
+            label: '显示',
+            click: () => {
+              this.mainWindow.show();
             }
+          }
         ]);
         this.tray.setToolTip('飞书');
         this.tray.setContextMenu(contextMenu);
