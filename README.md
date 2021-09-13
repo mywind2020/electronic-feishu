@@ -2,7 +2,9 @@
 飞书 linux客户端,基于electron
 
 
-
+# 重要提示
+目前飞书官方已经发布了原生的飞书linux版，请各位去飞书官网下载
+https://www.feishu.cn/download
 
 
 ## 如何使用
